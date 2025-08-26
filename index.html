@@ -1,34 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>AAGENT+</title>
   <style>
+    /* Центрируем весь блок по экрану */
     body {
-  margin: 0;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;   /* ← вот это */
-  justify-content: center;
-  align-items: center;
-  background: #fff;
-}
+      margin: 0;
+      min-height: 100svh;          /* лучше для мобилок, чем 100vh */
+      display: grid;
+      place-items: center;
+      background: #fff;
+    }
 
- img {
-  max-width: 90vw;   /* не шире 90% экрана */
-  max-height: 80vh;  /* не выше 80% высоты экрана */
-  height: auto;      /* сохраняет пропорции */
-  width: auto;
-}
+    /* Контейнер, чтобы ограничить ширину и держать элементы столбцом */
+    .wrap {
+      width: min(92vw, 720px);     /* глобальный предел ширины */
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 24px;
+      padding: 16px;
+    }
+
+    /* Картинка: не больше 60% высоты экрана и не шире 560px */
+    img {
+      display: block;
+      width: clamp(220px, 40vw, 560px);
+      max-height: 60vh;
+      height: auto;
+    }
+
+    /* Встраиваемая форма вписывается в контейнер */
+    iframe {
+      width: 100%;
+      border: 0;
+    }
   </style>
-         
 </head>
 <body>
-  <img src="angelagent.png" alt="Angel Agent">
-     <iframe data-tally-src="https://tally.so/embed/wbojM0?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1" loading="lazy" width="100%" height="174" frameborder="0" marginheight="0" marginwidth="0" title="AAGENT+ e-mails">
-     </iframe>
-     <script>var d=document,w="https://tally.so/widgets/embed.js",v=function(){"undefined"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach((function(e){e.src=e.dataset.tallySrc}))};if("undefined"!=typeof Tally)v(); else if(d.querySelector('script[src="'+w+'"]')==null){var s=d.createElement("script");s.src=w,s.onload=v,s.onerror=v,d.body.appendChild(s);}
-     </script>
+  <main class="wrap">
+    <img src="angelagent.png" alt="Angel Agent" />
+    <iframe
+      data-tally-src="https://tally.so/embed/wbojM0?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1"
+      loading="lazy"
+      title="AAGENT+ e-mails"
+    ></iframe>
+  </main>
+
+  <script>
+    // Tally embed
+    var d=document,w="https://tally.so/widgets/embed.js",v=function(){
+      if(typeof Tally!=="undefined"){Tally.loadEmbeds();}
+      else d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach(function(e){e.src=e.dataset.tallySrc});
+    };
+    if(typeof Tally!=="undefined") v();
+    else if(d.querySelector('script[src="'+w+'"]')==null){
+      var s=d.createElement("script"); s.src=w; s.onload=v; s.onerror=v; d.body.appendChild(s);
+    }
+  </script>
 </body>
 </html>
