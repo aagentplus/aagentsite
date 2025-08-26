@@ -32,22 +32,30 @@
       height: auto;
     }
 
-    /* Встраиваемая форма вписывается в контейнер */
-    iframe {
-      width: clamp(220px, 40vw, 560px);
-      border: 0;
-      place-items: center;
+/* Контейнер формы — сжимаем и центрируем */
+    .form{
+      width:100%;
+      max-width:520px;      /* ← контролируешь “узость” формы здесь */
+      margin:0 auto;        /* центр */
     }
+    .form iframe{
+      width:100%;
+      border:0;
+      display:block;
+    }
+    
   </style>
 </head>
 <body>
   <main class="wrap">
     <img src="angelagent.png" alt="Angel Agent" />
-    <iframe
-      data-tally-src="https://tally.so/embed/wbojM0?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1"
-      loading="lazy"
-      title="AAGENT+ e-mails"
-    ></iframe>
+    <div class="form">
+      <iframe
+        data-tally-src="https://tally.so/embed/wbojM0?hideTitle=1&transparentBackground=1&dynamicHeight=1"
+        loading="lazy"
+        title="AAGENT+ e-mails">
+      </iframe>
+    </div>
   </main>
 
   <script>
